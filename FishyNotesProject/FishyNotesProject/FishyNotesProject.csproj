@@ -61,6 +61,8 @@
       <DependentUpon>FishyNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="IController.cs" />
+    <Compile Include="IEventPublisher.cs" />
+    <Compile Include="IEventSubscriber.cs" />
     <Compile Include="ITextBoxStorage.cs" />
     <Compile Include="MyArgs.cs" />
     <Compile Include="NoteData.cs" />

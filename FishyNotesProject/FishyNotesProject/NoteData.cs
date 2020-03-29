@@ -2,7 +2,7 @@
 
 namespace FishyNotesProject
 {
-    public class NoteData
+    public class NoteData : IEventPublisher
     {
         public NoteData()
         {

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FishyNotesProject
 {
-    public partial class FishyNote : Form
+    public partial class FishyNote : Form , IEventSubscriber
     {
 
         bool _collapsedBool;
@@ -20,7 +20,7 @@ namespace FishyNotesProject
         int _ID;
         RemoveNoteDelegate _removeThis;
 
-        NoteData _noteData;
+        IEventPublisher _eventPublisher;
 
         public FishyNote(RemoveNoteDelegate pRemoveNote, int pID, ITextBoxStorage ptextStorage)
         {
@@ -33,19 +33,22 @@ namespace FishyNotesProject
             _collapsedBool = false;
             _textBoxStorage.LoadText(this.TextBox);
 
-            _noteData = new NoteData();
+            _eventPublisher = new NoteData();
         }
 
+        public void NewText(object source, MyArgs args)
+        {
+            TextBox.Text = args.Data;
+        }
         private void TextBox_Click(object sender, EventArgs e)
         {
             _textBoxStorage.Click(this.TextBox);
         }
-
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        private void TextBox_TextChanged(object sender, MyArgs e)
         {
-            _textBoxStorage.TextChanged(this.TextBox);
-        }
+            //_textBoxStorage.TextChanged(this.TextBox);
 
+        }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             _removeThis(_ID);
@@ -80,6 +83,8 @@ namespace FishyNotesProject
             }
 
         }
+
+        
 
         #region Code Snippet: makes this borderless window movable
         // Modified from https://stackoverflow.com/a/24561946 and attributed to user jay_t55
