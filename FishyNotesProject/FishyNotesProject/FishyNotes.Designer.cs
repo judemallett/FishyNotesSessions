@@ -1,6 +1,6 @@
 ﻿namespace FishyNotesProject
 {
-    partial class Form1
+    partial class FishyNotes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.AddNote = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // AddNote
+            // 
+            this.AddNote.Location = new System.Drawing.Point(100, 98);
+            this.AddNote.Name = "AddNote";
+            this.AddNote.Size = new System.Drawing.Size(75, 23);
+            this.AddNote.TabIndex = 0;
+            this.AddNote.Text = "More Fish!";
+            this.AddNote.UseVisualStyleBackColor = true;
+            this.AddNote.Click += new System.EventHandler(this.AddNote_Click);
+            // 
+            // FishyNotes
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.AddNote);
+            this.Name = "FishyNotes";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button AddNote;
     }
 }
 
