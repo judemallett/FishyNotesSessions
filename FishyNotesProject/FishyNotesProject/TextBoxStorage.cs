@@ -20,10 +20,7 @@
 
         void ITextBoxStorage.Click(System.Windows.Forms.TextBox pTextBox)
         {
-            if (pTextBox.Text == _defaultText)
-            {
-                pTextBox.Text = "";
-            }
+            
 
         }
 

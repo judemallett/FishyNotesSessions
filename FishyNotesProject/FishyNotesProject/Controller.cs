@@ -10,27 +10,25 @@ namespace FishyNotesProject
     {
         int _InstanceCounter;
         Dictionary<int, FishyNote> _FishyNoteList;
-        Dictionary<int, ITextBoxStorage> _textBoxDictionary;
+        Dictionary<int, IEventPublisher> _textEventDictionary;
 
-        IEventPublisher _noteData;
         public Controller()
         {
             _InstanceCounter = 0;
             _FishyNoteList = new Dictionary<int, FishyNote>();
-            _textBoxDictionary = new Dictionary<int, ITextBoxStorage>();
+            _textEventDictionary = new Dictionary<int, IEventPublisher>();
 
-            _noteData = new NoteData();
         }
 
         public void MoreFish()
         {
-            _textBoxDictionary.Add(_InstanceCounter, new TextBoxStorage());
+            _textEventDictionary.Add(_InstanceCounter, new NoteData());
 
-            _FishyNoteList.Add(_InstanceCounter, new FishyNote(RemoveNote, _InstanceCounter, _textBoxDictionary[_FishyNoteList.Count], _noteData.ChangeText));
+            _FishyNoteList.Add(_InstanceCounter, new FishyNote(RemoveNote, _InstanceCounter, _textEventDictionary[_InstanceCounter].ChangeText));
 
             _FishyNoteList[_InstanceCounter].Show();
 
-            _noteData.Subscribe(_FishyNoteList[_InstanceCounter].NewText); //FishyNote.NewText
+            _textEventDictionary[_InstanceCounter].Subscribe(_FishyNoteList[_InstanceCounter].NewText); //FishyNote.NewText
 
             _InstanceCounter++;
         }

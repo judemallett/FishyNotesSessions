@@ -15,8 +15,8 @@ namespace FishyNotesProject
     {
 
         bool _collapsedBool;
-        ITextBoxStorage _textBoxStorage;
 
+        string _defaultText;
         int _ID;
         RemoveNoteDelegate _removeThis;
 
@@ -24,16 +24,15 @@ namespace FishyNotesProject
 
         StringVoidDelegate _changeText;
 
-        public FishyNote(RemoveNoteDelegate pRemoveNote, int pID, ITextBoxStorage ptextStorage, StringVoidDelegate pChangeText)
+        public FishyNote(RemoveNoteDelegate pRemoveNote, int pID, StringVoidDelegate pChangeText)
         {
             InitializeComponent();
 
+            _defaultText = "Enter your note here...";
             _ID = pID;
             _removeThis = pRemoveNote;
 
-            _textBoxStorage = ptextStorage;
             _collapsedBool = false;
-            //_textBoxStorage.LoadText(this.TextBox);
 
             _changeText = pChangeText;
 
@@ -46,7 +45,12 @@ namespace FishyNotesProject
         }
         private void TextBox_Click(object sender, EventArgs e)
         {
-            //_textBoxStorage.Click(this.TextBox);
+
+            if (TextBox.Text == _defaultText)
+            {
+                TextBox.Text = "";
+            }
+            
         }
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
