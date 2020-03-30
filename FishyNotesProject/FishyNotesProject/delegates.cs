@@ -7,4 +7,6 @@ namespace FishyNotesProject
     public delegate void ReturnVoidDelegate();
 
     public delegate void ReturnVoidCommand();
+
+    public delegate void StringVoidDelegate(String data);
 }

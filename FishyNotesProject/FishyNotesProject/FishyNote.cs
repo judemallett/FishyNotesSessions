@@ -22,7 +22,9 @@ namespace FishyNotesProject
 
         IEventPublisher _eventPublisher;
 
-        public FishyNote(RemoveNoteDelegate pRemoveNote, int pID, ITextBoxStorage ptextStorage)
+        StringVoidDelegate _changeText;
+
+        public FishyNote(RemoveNoteDelegate pRemoveNote, int pID, ITextBoxStorage ptextStorage, StringVoidDelegate pChangeText)
         {
             InitializeComponent();
 
@@ -31,7 +33,9 @@ namespace FishyNotesProject
 
             _textBoxStorage = ptextStorage;
             _collapsedBool = false;
-            _textBoxStorage.LoadText(this.TextBox);
+            //_textBoxStorage.LoadText(this.TextBox);
+
+            _changeText = pChangeText;
 
             _eventPublisher = new NoteData();
         }
@@ -42,11 +46,11 @@ namespace FishyNotesProject
         }
         private void TextBox_Click(object sender, EventArgs e)
         {
-            _textBoxStorage.Click(this.TextBox);
+            //_textBoxStorage.Click(this.TextBox);
         }
-        private void TextBox_TextChanged(object sender, MyArgs e)
+        private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            //_textBoxStorage.TextChanged(this.TextBox);
+            _changeText(TextBox.Text);
 
         }
         private void DeleteButton_Click(object sender, EventArgs e)

@@ -10,6 +10,6 @@ namespace FishyNotesProject
     {
         void Subscribe(EventHandler<MyArgs> listener);
 
-        //void Unsubscribe();
+        void ChangeText(String newText);
     }
 }

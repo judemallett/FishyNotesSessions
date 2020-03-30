@@ -12,6 +12,7 @@ namespace FishyNotesProject
 
         private void OnDataChanged(String data)
         {
+            Console.WriteLine("ondatachanged event");
             MyArgs args = new MyArgs(data);
             NewData(this, args);
         }
@@ -22,9 +23,10 @@ namespace FishyNotesProject
             NewData += listener;
         }
 
-        private void ChangeText(String newText)
+        public void ChangeText(String newText)
         {
-            //OnNewData(newText); //test
+            Console.WriteLine("change text event");
+            OnDataChanged(newText); //When change detected, call event publish method
         }
 
     }
